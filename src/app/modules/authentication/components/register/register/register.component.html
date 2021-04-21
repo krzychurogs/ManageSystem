@@ -1,0 +1,22 @@
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+<div class="tlo">
+
+
+<div class="login">
+
+  <div class="login-form">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <h3>Mail:</h3>
+    <input type="mail" formControlName="email" placeholder="Email"/><br>
+    <h3>Password:</h3>
+    <input type="password" formControlName="password" placeholder="Password"/>
+    <br>
+    <button type="submit"class="btn btn-primary" >Loguj</button>
+    <br>
+
+    <br>
+  </form>
+  </div>
+</div>
+
+</div>

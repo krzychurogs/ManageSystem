@@ -1,5 +1,7 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
@@ -9,7 +11,11 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class RegisterComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private serviceAuth: AuthenticationService) {
+  constructor(
+    private db: AngularFireDatabase,
+    private router: Router,
+    private serviceAuth: AuthenticationService
+  ) {
     this.myForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -30,9 +36,12 @@ export class RegisterComponent implements OnInit {
     this.serviceAuth
       .registerUser(values.email, values.password)
       .then((response: any) => {
-        console.log(response);
+        this.router.navigate(['login']);
         alert('Udało się zalogować');
       });
+  }
+  goToLogin() {
+    this.router.navigate(['login']);
   }
   ngOnInit() {}
 }

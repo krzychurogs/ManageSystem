@@ -1,7 +1,12 @@
+import { LOGIN_USER } from './../../../store/actions/authentications.actions';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AuthenticationService } from '../../../services/authentication.service';
-
+import * as authActions from '../../../store/actions';
+import { AuthState } from '../../../store/reducer';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +14,13 @@ import { AuthenticationService } from '../../../services/authentication.service'
 })
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private serviceAuth: AuthenticationService) {
+  wartosc: any;
+  constructor(
+    private db: AngularFireDatabase,
+    private router: Router,
+    private store: Store<AuthState>,
+    private serviceAuth: AuthenticationService
+  ) {
     this.myForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -26,13 +37,16 @@ export class LoginComponent implements OnInit {
     return this.myForm.get('password');
   }
   onSubmit() {
-    const values = this.myForm.value;
-    this.serviceAuth
-      .registerUser(values.email, values.password)
-      .then((response: any) => {
-        console.log(response);
-        alert('Udało się zalogować');
-      });
+    this.store.dispatch(
+      authActions.LOGIN_USER({
+        email: this.email?.value,
+        password: this.password?.value,
+      })
+    );
+    this.router.navigate(['showtask']);
+  }
+  goToRegister() {
+    this.router.navigate(['register']);
   }
 
   ngOnInit() {}

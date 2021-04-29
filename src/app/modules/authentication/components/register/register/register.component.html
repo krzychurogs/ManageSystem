@@ -1,22 +1,32 @@
-<link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
-<div class="tlo">
 
+<div class="container">
 
-<div class="login">
+  <div class="login-container">
 
-  <div class="login-form">
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <h3>Mail:</h3>
-    <input type="mail" formControlName="email" placeholder="Email"/><br>
-    <h3>Password:</h3>
-    <input type="password" formControlName="password" placeholder="Password"/>
-    <br>
-    <button type="submit"class="btn btn-primary" >Loguj</button>
-    <br>
+    <i class="material-icons icon-set">vpn_key</i>
+    <div class="login-header">
+    Create Account
+    </div>
+    <div class="login-form">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
 
-    <br>
-  </form>
+      <input type="mail" formControlName="email" placeholder="Email"/><br>
+
+      <input type="password" formControlName="password"  class="form-control" placeholder="Password"/>
+      <input type="password" formControlName="password"  class="form-control" placeholder="Repeat Password"/>
+      <br>
+      <button type="submit" class="btn btn-outline-primary">Create</button>
+      <br>
+
+      <br>
+    </form>
+      <span (click)="goToLogin()"> You forgot about your account? Login here</span>
+
+    </div>
+
   </div>
-</div>
 
-</div>
+
+
+
+  </div>

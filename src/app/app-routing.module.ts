@@ -9,6 +9,12 @@ const routes: Routes = [
         (mod) => mod.AuthenticationModule
       ),
   },
+
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/navbar/navbar.module').then((mod) => mod.NavbarModule),
+  },
 ];
 
 @NgModule({

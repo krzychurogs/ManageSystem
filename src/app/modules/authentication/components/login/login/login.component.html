@@ -1,29 +1,31 @@
-<link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
 
 <div class="container">
 
-<div class="register__container">
-  <div class="register__header">
-s
+<div class="login-container">
+
+  <i class="material-icons icon-set">vpn_key</i>
+  <div class="login-header">
+  Login Panel
   </div>
-</div>
-
-<div class="login">
-
   <div class="login-form">
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <h3>Mail:</h3>
+    <form name="myForm" [formGroup]="myForm" (ngSubmit)=" myForm.valid && onSubmit()">
+
     <input type="mail" formControlName="email" placeholder="Email"/><br>
-    <h3>Password:</h3>
-    <input type="password" formControlName="password" placeholder="Password"/>
+
+    <input type="password" formControlName="password"  class="form-control" placeholder="Password"/>
     <br>
-    <button type="submit"class="btn btn-primary" >Loguj</button>
+    <button type="submit" class="btn btn-outline-primary">LOGIN</button>
     <br>
 
     <br>
   </form>
+    <span (click)="goToRegister()"> No account yet? Register here</span>
+
   </div>
+
 </div>
+
+
 
 
 </div>

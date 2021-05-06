@@ -5,6 +5,8 @@ import { filter, map } from 'rxjs/operators';
 import { IBasicUser } from 'src/app/core/interfaces/user.interface';
 import { AuthModuleState } from 'src/app/modules/authentication/store/reducer';
 import { selectLoggedUser } from 'src/app/modules/authentication/store/selector/authentication.selector';
+import * as authActions from "../../../authentication/store/actions";
+import {loadUser} from "../../../authentication/store/actions";
 
 @Component({
   selector: 'app-navbar',
@@ -17,10 +19,13 @@ export class NavbarComponent implements OnInit {
     this.currentUser$ = this.store
       .select(selectLoggedUser)
       .pipe(filter((res) => res !== null));
-    console.log(this.currentUser$);
-    this.currentUser$.subscribe((res: any) => {
-      console.log(res);
-    });
+    // console.log(this.currentUser$);
+    // this.currentUser$.subscribe((res: any) => {
+    //   console.log(res);
+    // });
   }
-  ngOnInit() {}
+
+  ngOnInit(): void {
+    this.store.dispatch(loadUser());
+  }
 }

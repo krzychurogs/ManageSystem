@@ -1,17 +1,22 @@
-import { IBasicUser } from './../../../../core/interfaces/user.interface';
-import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, of } from 'rxjs';
-import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
-import { AuthenticationService } from '../../services/authentication.service';
+import {IBasicUser} from './../../../../core/interfaces/user.interface';
+import {Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {EMPTY, of} from 'rxjs';
+import {map, mergeMap, catchError, switchMap, tap} from 'rxjs/operators';
+import {AuthenticationService} from '../../services/authentication.service';
 
 import * as authActions from '../actions';
+import {Router} from "@angular/router";
+
 @Injectable()
 export class AuthenTicationEffects {
   constructor(
     private actions$: Actions,
-    private authenTicationServices: AuthenticationService
-  ) {}
+    private authenTicationServices: AuthenticationService,
+    private router: Router
+  ) {
+  }
+
   loginUser$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.LOGIN_USER),
@@ -19,13 +24,14 @@ export class AuthenTicationEffects {
         this.authenTicationServices
           .signIn(action.email, action.password)
           .then((user: any) => {
-            // console.log('usr', user);
+            console.log('usr', user);
 
             return authActions.loadUser();
           })
       )
     );
   });
+
 
   loadUserLogin$ = createEffect(() => {
     return this.actions$.pipe(
@@ -36,10 +42,9 @@ export class AuthenTicationEffects {
             if (user === null) {
               throw Error('User not found');
             }
-
-            // console.log('us' + user.uid);
-            //localStorage.setItem('user', JSON.stringify(user));
-            return authActions.LOGIN_USER_SUCCESS({ user });
+            this.router.navigate(['/home/showtask']);
+            console.log('us' + user);
+            return authActions.LOGIN_USER_SUCCESS({user});
           })
         )
       )

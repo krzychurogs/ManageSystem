@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {AuthenticationModule} from "./modules/authentication/authentication.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

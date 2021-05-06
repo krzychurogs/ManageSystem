@@ -36,12 +36,12 @@ export class RegisterComponent implements OnInit {
     this.serviceAuth
       .registerUser(values.email, values.password)
       .then((response: any) => {
-        this.router.navigate(['login']);
+        this.router.navigate(['/auth/login']);
         alert('Udało się zalogować');
       });
   }
   goToLogin() {
-    this.router.navigate(['login']);
+    this.router.navigate(['/auth/login']);
   }
   ngOnInit() {}
 }

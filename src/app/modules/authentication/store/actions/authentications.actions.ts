@@ -22,4 +22,7 @@ export const Login_Failure = createAction(
   props<{ error: any }>()
 );
 
-export const loadUser = createAction('[Auth] Register fail');
+
+export const loadUser = createAction('[Auth] Load user');
+
+export const loadUserSuccess = createAction('[Auth] Load user success');

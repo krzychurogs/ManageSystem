@@ -23,20 +23,24 @@ export class AuthenticationService {
     return this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((response: any) => {
-        //console.log(response.user.uid);
+        // console.log(response.user.uid);
         this.db.database
           .ref(`users/${response.user.uid}`)
-          .set({ role: 'Admin', email: email });
+          .set({ role: 'Admin', email });
       });
   }
-  signIn(email: string, password: string) {
-    return this.firebaseAuth.setPersistence(`local`).then(() => {
-      this.firebaseAuth
-        .signInWithEmailAndPassword(email, password)
-        .then((user: any) => {
-          // console.log('us', user);
-          return user;
+  async signIn(email: string, password: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.firebaseAuth.setPersistence(`local`).then(() => {
+        this.firebaseAuth
+          .signInWithEmailAndPassword(email, password)
+          .then((user: any) => {
+            // console.log('us', user);
+            resolve(user);
+          }).catch(e => {
+            reject(e);
         });
+      });
     });
   }
 

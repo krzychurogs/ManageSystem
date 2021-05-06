@@ -8,7 +8,7 @@ import { ShowTaskComponent } from './components/show-task/show-task.component';
  */
 
 const routes: Routes = [
-  { path: '*', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'showtask', pathMatch: 'full' },
   { path: 'addtask', component: AddTaskComponent },
   { path: 'showtask', component: ShowTaskComponent },
 ];

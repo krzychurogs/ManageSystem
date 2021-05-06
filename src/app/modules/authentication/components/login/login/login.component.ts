@@ -1,12 +1,13 @@
-import { LOGIN_USER } from './../../../store/actions/authentications.actions';
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AuthenticationService } from '../../../services/authentication.service';
+import {LOGIN_USER} from './../../../store/actions/authentications.actions';
+import {Component, OnInit} from '@angular/core';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {AuthenticationService} from '../../../services/authentication.service';
 import * as authActions from '../../../store/actions';
-import { AuthState } from '../../../store/reducer';
+import {AuthState} from '../../../store/reducer';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +16,7 @@ import { AuthState } from '../../../store/reducer';
 export class LoginComponent implements OnInit {
   myForm: FormGroup;
   wartosc: any;
+
   constructor(
     private db: AngularFireDatabase,
     private router: Router,
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
     });
     serviceAuth.getUserRemotely();
   }
+
   get email() {
     return this.myForm.get('email');
   }
@@ -37,6 +40,7 @@ export class LoginComponent implements OnInit {
   get password() {
     return this.myForm.get('password');
   }
+
   onSubmit() {
     this.store.dispatch(
       authActions.LOGIN_USER({
@@ -44,11 +48,12 @@ export class LoginComponent implements OnInit {
         password: this.password?.value,
       })
     );
-    this.router.navigate(['showtask']);
-  }
-  goToRegister() {
-    this.router.navigate(['register']);
   }
 
-  ngOnInit() {}
+  goToRegister() {
+    this.router.navigate(['/auth/register']);
+  }
+
+  ngOnInit() {
+  }
 }

@@ -8,12 +8,13 @@ export const LOGIN_USER = createAction(
   '[Auth] Login',
   props<{ email: string; password: string }>()
 );
-export const Login_SUCCESS = createAction(
-  '[Auth Effect] Login User Success',
+
+export const LOGIN_USER_SUCCESS = createAction(
+  '[Auth] Login success',
   props<{ user: IBasicUser }>()
 );
-export const loginUserSuccess = createAction(
-  '[Auth] Login success',
+export const REFRESH_USER = createAction(
+  '[Auth] Refresh User',
   props<{ user: IBasicUser }>()
 );
 export const Login_Failure = createAction(

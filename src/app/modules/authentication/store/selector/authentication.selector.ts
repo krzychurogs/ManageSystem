@@ -6,3 +6,7 @@ export const selectLoggedUser = createSelector(
   authselector,
   (state: AuthState) => state.user
 );
+export const refreshLoggedUser = createSelector(
+  authselector,
+  (state: AuthState) => state.user
+);

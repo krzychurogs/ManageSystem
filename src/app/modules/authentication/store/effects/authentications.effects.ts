@@ -1,4 +1,3 @@
-import { Login_SUCCESS } from './../actions/authentications.actions';
 import { IBasicUser } from './../../../../core/interfaces/user.interface';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -17,11 +16,13 @@ export class AuthenTicationEffects {
     return this.actions$.pipe(
       ofType(authActions.LOGIN_USER),
       switchMap((action) =>
-        this.authenTicationServices.signIn(action.email, action.password).pipe(
-          map((user) => {
+        this.authenTicationServices
+          .signIn(action.email, action.password)
+          .then((user: any) => {
+            // console.log('usr', user);
+
             return authActions.loadUser();
           })
-        )
       )
     );
   });
@@ -35,8 +36,10 @@ export class AuthenTicationEffects {
             if (user === null) {
               throw Error('User not found');
             }
-            console.log('eff');
-            return authActions.loginUserSuccess({ user });
+
+            // console.log('us' + user.uid);
+            //localStorage.setItem('user', JSON.stringify(user));
+            return authActions.LOGIN_USER_SUCCESS({ user });
           })
         )
       )

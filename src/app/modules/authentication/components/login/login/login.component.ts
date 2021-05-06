@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
         Validators.minLength(6),
       ]),
     });
+    serviceAuth.getUserRemotely();
   }
   get email() {
     return this.myForm.get('email');

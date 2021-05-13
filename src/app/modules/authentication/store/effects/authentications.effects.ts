@@ -1,12 +1,12 @@
-import {IBasicUser} from './../../../../core/interfaces/user.interface';
-import {Injectable} from '@angular/core';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {EMPTY, of} from 'rxjs';
-import {map, mergeMap, catchError, switchMap, tap} from 'rxjs/operators';
-import {AuthenticationService} from '../../services/authentication.service';
+import { IBasicUser } from './../../../../core/interfaces/user.interface';
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { EMPTY, of } from 'rxjs';
+import { map, mergeMap, catchError, switchMap, tap } from 'rxjs/operators';
+import { AuthenticationService } from '../../services/authentication.service';
 
 import * as authActions from '../actions';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenTicationEffects {
@@ -14,8 +14,7 @@ export class AuthenTicationEffects {
     private actions$: Actions,
     private authenTicationServices: AuthenticationService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   loginUser$ = createEffect(() => {
     return this.actions$.pipe(
@@ -32,7 +31,6 @@ export class AuthenTicationEffects {
     );
   });
 
-
   loadUserLogin$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.loadUser),
@@ -42,9 +40,10 @@ export class AuthenTicationEffects {
             if (user === null) {
               throw Error('User not found');
             }
-            this.router.navigate(['/home/showtask']);
-            console.log('us' + user);
-            return authActions.LOGIN_USER_SUCCESS({user});
+
+            console.log('us', user);
+            this.router.navigate(['/home']);
+            return authActions.LOGIN_USER_SUCCESS({ user });
           })
         )
       )

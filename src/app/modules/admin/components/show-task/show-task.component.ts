@@ -18,28 +18,31 @@ export class ShowTaskComponent implements OnInit {
 
   name: any;
   uid: any;
+  currentUser$: Observable<IBasicUser>;
+  user: IBasicUser;
   constructor(
     private store: Store<AdminModuleState>,
+    private storeUser: Store<AuthModuleState>,
     private firebaseAuth: AngularFireAuth
   ) {
-    console.log('car', this.firebaseAuth.currentUser);
-
     // console.log('nam' + this.name);
-    firebaseAuth.currentUser.then((res) => {
-      console.log('cur', res);
-      setTimeout(() => {
-        console.log('curdel', res);
-      }, 5000);
+    this.currentUser$ = this.storeUser
+      .select(selectLoggedUser)
+      .pipe(filter((res) => res !== null));
+    this.currentUser$.subscribe((res) => {
+      this.user = res;
     });
   }
 
   ngOnInit() {}
 
   createTask() {
+    console.log('dzieje ');
     this.store.dispatch(
       adminActions.CREATE_TASKS({
         name: 'nazwa',
-        desc: 'opis,',
+        desc: 'opis',
+        userId: this.user.uid,
       })
     );
   }

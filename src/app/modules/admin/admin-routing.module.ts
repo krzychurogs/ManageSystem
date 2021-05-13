@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddTaskComponent} from './components/add-task/add-task.component';
+import { AddTaskComponent } from './components/add-task/add-task.component';
+import { PanelComponent } from './components/panel/panel.component';
 import { ShowTaskComponent } from './components/show-task/show-task.component';
 
 /**
@@ -8,9 +9,10 @@ import { ShowTaskComponent } from './components/show-task/show-task.component';
  */
 
 const routes: Routes = [
-  { path: '**', redirectTo: 'showtask', pathMatch: 'full' },
+  { path: '**', redirectTo: 'paneltask', pathMatch: 'full' },
   { path: 'addtask', component: AddTaskComponent },
   { path: 'showtask', component: ShowTaskComponent },
+  { path: 'paneltask', component: PanelComponent },
 ];
 
 @NgModule({

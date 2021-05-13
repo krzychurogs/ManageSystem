@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  height: 100%;
+  .container__Sprints {
+    height: 20%;
+    .grid__container {
+      display: grid;
+
+      margin: 20px 20px 20px 20px;
+      grid-template-columns: repeat(3, 1fr);
+      grid-row-gap: 20px;
+      grid-column-gap: 20px;
+    }
+    button {
+      height: 50px;
+      background-color: #fff;
+      border-radius: 2px;
+    }
+  }
+}

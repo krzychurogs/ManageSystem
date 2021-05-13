@@ -1,12 +1,12 @@
-import {LOGIN_USER} from './../../../store/actions/authentications.actions';
-import {Component, OnInit} from '@angular/core';
-import {AngularFireDatabase} from '@angular/fire/database';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {Store} from '@ngrx/store';
-import {AuthenticationService} from '../../../services/authentication.service';
+import { LOGIN_USER } from './../../../store/actions/authentications.actions';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthenticationService } from '../../../services/authentication.service';
 import * as authActions from '../../../store/actions';
-import {AuthState} from '../../../store/reducer';
+import { AuthState } from '../../../store/reducer';
 
 @Component({
   selector: 'app-login',
@@ -51,9 +51,8 @@ export class LoginComponent implements OnInit {
   }
 
   goToRegister() {
-    this.router.navigate(['/auth/register']);
+    this.router.navigate(['auth/register']);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

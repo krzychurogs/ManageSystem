@@ -18,11 +18,4 @@ export class AddTaskComponent implements OnInit {
   }
 
   ngOnInit() {}
-  spanishMessage() {
-    this.store.dispatch({ type: 'SPANISH' });
-  }
-
-  frenchMessage() {
-    this.store.dispatch({ type: 'FRENCH' });
-  }
 }
